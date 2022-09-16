@@ -17,6 +17,18 @@
 
     <?php if(isset($_GET['id'])): ?>
 
+        <?php
+         // delete Idea 
+          $id = $_GET['id'] ; 
+        $connection = new PDO($dsn, $dbuser, $dbupassword);
+
+        $sql = "DELETE FROM `ideastable` WHERE id =:id  ";
+        $statement =  $connection->prepare($sql);
+        $statement -> bindValue(":id" , $id) ; 
+        $statement->execute();
+
+        ?>
+       
     <div style="background:red;color:white;padding:10px">
         <p>The idea is deleted</p>
     </div>
