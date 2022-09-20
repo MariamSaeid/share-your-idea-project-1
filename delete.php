@@ -10,28 +10,28 @@
     <title><?php echo $page_title; ?></title>
 
 </head>
-
+    
 <body>
     <h1> <?php echo $page_heading; ?> </h1>
     <p> <a href="index.php">Go back to the homepage</a> </p>
 
-    <?php if(isset($_GET['id'])): ?>
+    <?php if (isset($_GET['id'])) : ?>
 
         <?php
-         // delete Idea 
-          $id = $_GET['id'] ; 
+        // delete Idea 
+        $id = $_GET['id'];
         $connection = new PDO($dsn, $dbuser, $dbupassword);
 
-        $sql = "DELETE FROM `ideastable` WHERE id =:id  ";
+        $sql = "DELETE FROM `ideastable` WHERE id = :id  ";
         $statement =  $connection->prepare($sql);
-        $statement -> bindValue(":id" , $id) ; 
+        $statement->bindValue(":id", $id);
         $statement->execute();
 
         ?>
-       
-    <div style="background:red;color:white;padding:10px">
-        <p>The idea is deleted</p>
-    </div>
+
+        <div style="background:red;color:white;padding:10px">
+            <p>The idea is deleted</p>
+        </div>
     <?php endif; ?>
 
 </body>

@@ -31,23 +31,13 @@
             $idea_text = $_POST['text'];
         endif; ?>
 
-        <!--    $connection = new PDO($dsn, $dbuser, $dbupassword);
-        $sql = sprintf(
-            "INSERT INTO %s (%s) vALUES (%s)",
-            'ideastable',
-            'title',
-            'text',
-            'title 1 added',
-            'text 1 added'
-        ) -->
-
         <?php
-         // insert Idea 
+        // insert Idea 
         $new_idea = array('title' => $idea_title, 'text' => $idea_text);
-        $keys_string = implode(", " , array_keys($new_idea));
-        $keys_placeholder = ":".implode(" , :" , array_keys($new_idea));
-        // echo $keys_string;
-        // echo $keys_placeholder ;
+        $keys_string = implode(", ", array_keys($new_idea));
+        $keys_placeholder = ":" . implode(" , :", array_keys($new_idea));
+        //  echo $keys_string;
+        //  echo $keys_placeholder ;
         $connection = new PDO($dsn, $dbuser, $dbupassword);
 
         $sql = sprintf(
@@ -60,7 +50,7 @@
         $statement->execute($new_idea);
 
         ?>
-       
+
 
 
 
@@ -110,12 +100,8 @@
         </tr>
         <?php
         foreach ($result as $row) : ?>
-
-
-
-
             <tr>
-                <th><a href="update.php?id=<?php echo $row['id'] ?>"><?php echo $row['id'] ?></a></th>
+                <th><a href="update.php?id=<?php echo $row['id'] ?>"><?php echo $row['id'];?></a></th>
                 <th> <?php echo $row['title'] ?></th>
                 <th><?php echo $row['text'] ?></th>
                 <th><a href="delete.php?id=<?php echo $row['id'] ?>" style="color:red;">X</a></th>
